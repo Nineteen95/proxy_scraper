@@ -8,6 +8,9 @@ from models import Base, Proxy
 from proxy_checker import check_proxy
 from datetime import datetime, timedelta
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DB_USER = os.getenv('DB_USER')
 DB_PASS = os.getenv('DB_PASS')
@@ -18,7 +21,7 @@ app = Flask(__name__)
 api = Api(app)
 CORS(app)
 
-engine = create_engine(f'postgresql://{DB_USER}:{DB_PASS}@localhost/{DB_NAME}')
+engine = create_engine(f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASS')}@localhost/{os.getenv('DB_NAME')}")
 Session = sessionmaker(bind=engine)
 session = Session()
 '''Данный код создает Flask-приложение и RESTful API, позволяющий получать список доступных прокси из базы данных и проверять их статус. Мы также добавляем CORS-поддержку для обработки запросов из других источников.

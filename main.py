@@ -9,13 +9,11 @@ from proxy_checker import check_proxy
 from proxy_api import start_api_server
 from dotenv import load_dotenv
 
-load_dotenv()
+
 
 import os
 
-DB_USER = os.getenv('DB_USER')
-DB_PASS = os.getenv('DB_PASS')
-DB_NAME = os.getenv('DB_NAME')
+
 
 
 def parse_args():
@@ -84,5 +82,9 @@ def main():
 
 
 if __name__ == '__main__':
+    load_dotenv()
+    DB_USER = os.getenv('DB_USER')
+    DB_PASS = os.getenv('DB_PASS')
+    DB_NAME = os.getenv('DB_NAME')
     main()
 
